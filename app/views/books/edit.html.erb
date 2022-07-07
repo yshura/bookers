@@ -1,4 +1,5 @@
-<h2>Editing Book</h2>
+<body>
+<h1>Editing Book</h1>
 <% if @book.errors.any? %>error
   <ul>
   <% @book.errors.full_messages.each do |message| %>
@@ -8,15 +9,20 @@
 <% end %>
 
 <%= form_with model:@book, url: book_path(@book.id), method: :patch do |f| %>
-
- <h4>Title</h4>
+ <div class="field">
+ <%=f.label :book_totle, "Title" %>
  <%=f.text_field :title %>
-
- <h4>Body</h4>
+ </div>
+ <div class="field">
+ <%=f.label :book_body, "Body" %>
  <%=f.text_area :body %>
-
+ </div>
+ <div class="actions">
  <%=f.submit 'Update Book' %>
 <% end %>
+</div>
 
-<%= link_to "Show" , book_path(@book.id) %>
-<%= link_to "Back" , books_path %>
+ <a class="show"><%= link_to "Show" , book_path(@book.id) %></a>
+ |
+ <a class="back"><%= link_to "Back" , books_path %></a>
+</body>
